@@ -5,6 +5,18 @@
     class="ion-padding ion-text-center"
     (ngSubmit)="submit()"
   >
+    <ion-avatar *ngIf="form.value.image">
+      <img [src]="form.value.image" />
+    </ion-avatar>
+    <ion-icon
+      class="image-icon"
+      name="image-outline"
+      *ngIf="!form.value.image"
+    ></ion-icon>
+    <br />
+    <ion-button (click)="takeImage()" size="small" shape="round" mode="ios">
+      Tomar / Seleccionar
+    </ion-button>
     <app-custom-input
       autocomplete="name"
       [control]="form.controls.name"
