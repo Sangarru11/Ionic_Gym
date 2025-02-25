@@ -1,4 +1,4 @@
-<app-header title="Agregar Miniatura" [isModal]="true"></app-header>
+<app-header [title]="miniature ? 'Actualizar miniatura' : 'Añadir miniatura'" [isModal]="true"></app-header>
 <ion-content>
   <form
     [formGroup]="form"
@@ -77,9 +77,8 @@
       class="ion-margin"
       type="submit"
       [disabled]="form.invalid"
-    >
-      Agregar miniatura
-      <ion-icon slot="end" name="person-add-outline"></ion-icon>
+    >{{miniature ? 'Actualizar' : 'Añadir'}}
+      <ion-icon slot="end" name="body-outline"></ion-icon>
     </ion-button>
   </form>
 </ion-content>
