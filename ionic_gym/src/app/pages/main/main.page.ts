@@ -6,7 +6,7 @@ import {
   IonContent,
   IonMenu,
   IonMenuToggle, IonLabel, IonItem, IonIcon, IonRouterOutlet, IonTitle, IonFooter, IonToolbar, IonAvatar } from '@ionic/angular/standalone';
-import { homeOutline, personOutline, logOutOutline, personCircleOutline } from 'ionicons/icons';
+import { homeOutline, personOutline, logOutOutline, personCircleOutline, hardwareChipOutline } from 'ionicons/icons';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { HeaderComponent } from "../../shared/components/header/header.component";
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -41,12 +41,17 @@ export class MainPage implements OnInit {
       url: '/main/profile',
       icon: 'person-outline',
     },
+    {
+      title: 'Sensores',
+      url: '/main/sensors',
+      icon: 'hardware-chip-outline',
+    },
   ];
 
   user: User;
 
   constructor() {
-    addIcons({personCircleOutline,logOutOutline,personOutline,homeOutline});
+    addIcons({personCircleOutline,logOutOutline,personOutline,homeOutline, hardwareChipOutline});
     this.user = this.utilsService.getLocalStoredUser()!;
   }
 
