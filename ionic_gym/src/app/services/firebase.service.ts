@@ -41,15 +41,15 @@ export class FirebaseService {
   storage = inject(Storage);
 
   signIn(user: User): Promise<UserCredential> {
-    return signInWithEmailAndPassword(this.auth, user.email, user.password);
+    return signInWithEmailAndPassword(this.auth as Auth, user.email, user.password);
   }
 
   signUp(user: User): Promise<UserCredential> {
-    return createUserWithEmailAndPassword(this.auth, user.email, user.password);
+    return createUserWithEmailAndPassword(this.auth as Auth, user.email, user.password);
   }
 
   async updateUser(displayName: string) {
-    const user = await this.auth.currentUser;
+    const user = await (this.auth as Auth).currentUser;
     if (user) {
       // Actualiza el perfil del usuario
       await updateProfile(user, { displayName: displayName });
@@ -57,18 +57,18 @@ export class FirebaseService {
   }
 
   sendRecoveryEmail(email: string) {
-    return sendPasswordResetEmail(this.auth, email);
+    return sendPasswordResetEmail(this.auth as Auth, email);
   }
 
   async signOut() {
-    await this.auth.signOut();
+    await (this.auth as Auth).signOut();
     localStorage.removeItem('user');
     window.location.reload();
   }
 
   async isAuthenticated() {
     const userExists: boolean = await new Promise((resolve) => {
-      const unsubscribe = this.auth.onAuthStateChanged((user) => {
+      const unsubscribe = (this.auth as Auth).onAuthStateChanged((user: any) => {
         unsubscribe();
         if (user) {
           resolve(true);
