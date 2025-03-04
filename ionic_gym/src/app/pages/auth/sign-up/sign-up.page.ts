@@ -46,12 +46,14 @@ import { UtilsService } from 'src/app/services/utils.service';
     LogoComponent,
   ],
 })
-export class SignUpPage implements OnInit {
+export class SignUpPage {
   form = new FormGroup({
     uid: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    units: new FormControl(1, [Validators.required, Validators.min(1)]),
+    strength: new FormControl(0, [Validators.required, Validators.min(0)]),
   });
 
   firebaseService = inject(FirebaseService);
@@ -67,21 +69,19 @@ export class SignUpPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
-
   async submit() {
     if (this.form.valid) {
       const loading = await this.utilsService.loading();
       await loading.present();
       this.firebaseService
         .signUp(this.form.value as User)
-        .then(async (res) => {
+        .then(async (res: any) => {
           this.firebaseService.updateUser(this.form.value.name!)
           let uid = res.user!.uid;
           this.form.controls.uid.setValue(uid);
           this.setUserInfo(uid);
         })
-        .catch((error) => {
+        .catch((error: any) => {
           this.utilsService.presentToast({
             message: error.message,
             duration: 2500,
@@ -106,12 +106,12 @@ export class SignUpPage implements OnInit {
 
       this.firebaseService
         .setDocument(path, this.form.value)
-        .then((res) => {
+        .then((res: any) => {
           this.utilsService.saveInLocalStorage('user', this.form.value);
           this.form.reset();
           this.utilsService.routerLink('/main/home');
         })
-        .catch((error) => {
+        .catch((error: any) => {
           this.utilsService.presentToast({
             message: error.message,
             duration: 2500,
