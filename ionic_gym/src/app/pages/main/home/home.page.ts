@@ -106,7 +106,7 @@ import { CommonModule } from '@angular/common';
     }
 
     getTotalPower() {
-      return this.miniatures.reduce((accumulator, miniature) =>  accumulator + miniature.strength * miniature.units, 0)
+      return this.miniatures.reduce((accumulator, miniature) =>  accumulator + miniature.Repeticiones * miniature.Peso, 0)
     }
 
     async addUpdateMiniature(miniature?: Miniature) {

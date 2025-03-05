@@ -1,0 +1,24 @@
+.logo {
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.titulo {
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  color: rgba(0, 255, 77, 0.68);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.ion-text-end {
+  cursor: pointer; /* Changes the cursor to pointer */
+  transition: color 0.3s; /* Adds a transition effect for the color change */
+}
+
+.ion-text-end:hover {
+  color: #888888; /* Changes the color to a slightly more gray color on hover */
+}

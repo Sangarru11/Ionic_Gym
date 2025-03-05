@@ -58,8 +58,8 @@ import { Component, inject, Input, OnInit } from '@angular/core';
       id: new FormControl(''),
       image: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      units: new FormControl(1, [Validators.required, Validators.min(1)]),
-      strength: new FormControl(0, [Validators.required, Validators.min(0)]),
+      Repeticiones: new FormControl(1, [Validators.required, Validators.min(1)]),
+      Peso: new FormControl(0, [Validators.required, Validators.min(0)]),
     });
 
     constructor() {
