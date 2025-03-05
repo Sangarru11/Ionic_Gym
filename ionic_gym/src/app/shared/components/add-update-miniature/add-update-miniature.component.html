@@ -1,4 +1,4 @@
-<app-header [title]="miniature ? 'Actualizar miniatura' : 'Añadir miniatura'" [isModal]="true"></app-header>
+<app-header [title]="miniature ? 'Actualizar ejercicio' : 'Añadir ejercicio'" [isModal]="true"></app-header>
 <ion-content>
   <form
     [formGroup]="form"
@@ -14,7 +14,7 @@
       *ngIf="!form.value.image"
     ></ion-icon>
     <br />
-    <ion-button (click)="takeImage()" size="small" shape="round" mode="ios">
+    <ion-button class="ion-margin" (click)="takeImage()" size="small" shape="round" mode="ios" color="#79FFA1FF">
       Tomar / Seleccionar
     </ion-button>
     <app-custom-input
@@ -37,47 +37,42 @@
     </div>
 
     <app-custom-input
-      [control]="form.controls.units"
+      [control]="form.controls.Peso"
       type="number"
-      label="Unidades"
+      label="Repeticiones"
     ></app-custom-input>
 
     <div
       class="validators"
-      *ngIf="form.controls.units.errors && form.controls.units.touched"
+      *ngIf="form.controls.Peso.errors && form.controls.Peso.touched"
     >
-      <div *ngIf="form.controls.units.errors?.['required']">
+      <div *ngIf="form.controls.Peso.errors?.['required']">
         Debe especificar un número de unidades
       </div>
-      <div *ngIf="form.controls.units.errors?.['min']">
+      <div *ngIf="form.controls.Peso.errors?.['min']">
         Debe añadir al menos una unidad
       </div>
     </div>
 
     <app-custom-input
-      [control]="form.controls.strength"
+      [control]="form.controls.Repeticiones"
       type="number"
-      label="Fuerza"
+      label="Peso"
     ></app-custom-input>
 
     <div
       class="validators"
-      *ngIf="form.controls.strength.errors && form.controls.strength.touched"
+      *ngIf="form.controls.Repeticiones.errors && form.controls.Repeticiones.touched"
     >
-      <div *ngIf="form.controls.strength.errors?.['required']">
+      <div *ngIf="form.controls.Repeticiones.errors?.['required']">
         Debe especificar un número de unidades
       </div>
-      <div *ngIf="form.controls.strength.errors?.['min']">
+      <div *ngIf="form.controls.Repeticiones.errors?.['min']">
         La fuerza mínima es 0.
       </div>
     </div>
 
-    <ion-button
-      mode="ios"
-      class="ion-margin"
-      type="submit"
-      [disabled]="form.invalid"
-    >{{miniature ? 'Actualizar' : 'Añadir'}}
+    <ion-button mode="ios" class="ion-margin" type="submit" color="#79FFA1FF" [disabled]="form.invalid">{{miniature ? 'Actualizar' : 'Añadir'}}
       <ion-icon slot="end" name="body-outline"></ion-icon>
     </ion-button>
   </form>
