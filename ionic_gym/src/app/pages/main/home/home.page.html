@@ -7,11 +7,11 @@
   <ion-card mode="ios" color="secondary" class="d-flex-center ion-text-center" *ngIf="!loading && miniatures.length">
     <div>
       <h5>{{miniatures.length}}</h5>
-      <p>Batallones</p>
+      <p>Repeticiones totales</p>
     </div>
     <div>
-      <h5>{{getTotalPower()}}</h5>
-      <p>Poder total</p>
+      <h5>{{getTotalPower()}} kg</h5>
+      <p>Peso total</p>
     </div>
   </ion-card>
   <ion-list *ngIf="!loading">
@@ -27,10 +27,10 @@
         ><div class="name">{{miniature.name}}</div>
           <div class="data">
             <strong>Repeticiones:</strong> {{miniature.Repeticiones}} <br />
-            <strong>Peso:</strong> {{miniature.Peso}}
+            <strong>Peso: </strong>{{miniature.Peso}} kg
           </div>
           <ion-chip color="primary" mode="ios" outline="true"
-          >Poder: {{ miniature.Repeticiones * miniature.Peso }}</ion-chip
+          >Peso: {{ miniature.Repeticiones * miniature.Peso }} kg</ion-chip
           >
         </ion-label>
       </ion-item>
