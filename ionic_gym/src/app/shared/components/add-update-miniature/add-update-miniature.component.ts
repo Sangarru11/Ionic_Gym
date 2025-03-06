@@ -30,6 +30,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
   import { User } from 'src/app/models/user.model';
   import { UtilsService } from 'src/app/services/utils.service';
   import { Miniature } from 'src/app/models/miniature.model';
+import {SupabaseService} from "../../../services/supabase.service";
 
   @Component({
     selector: 'app-add-update-miniature',
@@ -51,6 +52,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
     @Input() miniature: Miniature | null = null;
     firebaseService = inject(FirebaseService);
     utilsService = inject(UtilsService);
+    supabaseService : SupabaseService = inject(SupabaseService);
 
     user = {} as User;
 
@@ -106,7 +108,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
       const path: string = `users/${this.user.uid}/miniatures`;
       const imageDataUrl = this.form.value.image;
       const imagePath = `${this.user.uid}/${Date.now()}`;
-      const imageUrl = await this.firebaseService.uploadImage(
+      const imageUrl = await this.supabaseService.uploadImage(
         imagePath,
         imageDataUrl!
       );
@@ -146,10 +148,10 @@ import { Component, inject, Input, OnInit } from '@angular/core';
       const path: string = `users/${this.user.uid}/miniatures/${this.miniature!.id}`;
       if (this.form.value.image != this.miniature!.image) {
         const imageDataUrl = this.form.value.image;
-        const oldImagePath = await this.firebaseService.getFilePath(this.miniature!.image);
-        await this.firebaseService.deleteFile(oldImagePath);
+        const oldImagePath = await this.supabaseService.getFilePath(this.miniature!.image);
+        await this.supabaseService.deleteFile(oldImagePath!);
         const imagePath = `${this.user.uid}/${Date.now()}`;
-        const imageUrl = await this.firebaseService.uploadImage(
+        const imageUrl = await this.supabaseService.uploadImage(
           imagePath,
           imageDataUrl!
         );
